@@ -114,7 +114,7 @@ class TrainRoute {
             char current = entry.getKey();
             int distance = entry.getValue();
 
-            if (current == end) {
+            if (current == end&& distance>0) {
                 return String.valueOf(distance);
             }
 
@@ -135,14 +135,18 @@ class TrainRoute {
     }
 
     static int countRoutesWithDistanceLessThanHelper(char current, char end, int maxDistance, int currentDistance) {
+        System.out.println("distancia actual "+currentDistance+" current "+current+" end "+ end);
+                int count = 0;
+
         if (currentDistance >= maxDistance) {
             return 0;
         }
-        if (current == end && currentDistance > 0) {
-            return 1;
+
+        if (current == end && currentDistance > 0
+                ) {
+            count++ ;
         }
 
-        int count = 0;
         List<Edge> edges = graph.get(current);
         if (edges != null) {
             for (Edge edge : edges) {
